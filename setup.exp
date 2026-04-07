@@ -1,0 +1,15 @@
+#!/usr/bin/expect -f
+set timeout 20
+spawn npx -y create-electron-vite ./
+expect "Project name:"
+send "\r"
+expect "Project template:"
+send "\033\[B"
+send "\r"
+expect "Add Electron updater plugin?"
+send "n\r"
+expect "Enable Electron download mirror?"
+send "n\r"
+expect "Package name:"
+send "\r"
+expect eof
