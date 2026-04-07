@@ -42,13 +42,13 @@ function checkNightMode() {
 function startNightMode() {
   isCurrentlyNight = true;
   console.log("Night mode aktiveret");
-  // Phase 2 MVP TODO: Redirect the windows rendered by WindowManagerService to a local black html frame
+  WindowManagerService.setNightModeForAll(true);
 }
 
 function endNightMode() {
   isCurrentlyNight = false;
   console.log("Night mode deaktiveret");
-  // Phase 2 MVP TODO: Restore correct dashboard URLs for windows.
+  WindowManagerService.setNightModeForAll(false);
 }
 
 export const SchedulerService = {

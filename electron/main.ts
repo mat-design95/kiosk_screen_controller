@@ -73,6 +73,7 @@ app.on('activate', () => {
 app.whenReady().then(() => {
   DisplayManagerService.syncDisplaysWithStore()
   SchedulerService.start()
+  WindowManagerService.restoreSession()
 
   ipcMain.handle('get-store', () => StorageService.getStore())
   ipcMain.handle('get-system-displays', () => DisplayManagerService.getSystemDisplays())

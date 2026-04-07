@@ -17,7 +17,8 @@ const defaultStore: AppStore = {
     backgroundMode: 'black',
     unifiedDisplay: true,
   },
-  displays: {}
+  displays: {},
+  activeDisplays: []
 };
 
 export const store = new Store<AppStore>({
@@ -54,5 +55,9 @@ export const StorageService = {
     const displays = store.get('displays');
     delete displays[id];
     store.set('displays', displays);
+  },
+
+  updateActiveDisplays: (activeDisplays: string[]) => {
+    store.set('activeDisplays', activeDisplays);
   }
 };

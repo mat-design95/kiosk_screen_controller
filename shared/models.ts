@@ -32,4 +32,5 @@ export interface AppStore {
   globalSettings: GlobalSettings;
   nightModeSettings: NightModeSettings;
   displays: Record<string, DisplayConfig>;
+  activeDisplays: string[];
 }
