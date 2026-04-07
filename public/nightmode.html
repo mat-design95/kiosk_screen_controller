@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night Mode</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #050505;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Inter', -apple-system, sans-serif;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: pulseBreath 6s infinite alternate ease-in-out;
+    }
+
+    .logo {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 40px;
+      opacity: 0.6;
+      object-fit: contain;
+      filter: drop-shadow(0 0 20px rgba(255,255,255,0.05));
+    }
+
+    h1 {
+      color: #333;
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: 8px;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    @keyframes pulseBreath {
+      0% { opacity: 0.3; transform: scale(0.97); }
+      100% { opacity: 0.8; transform: scale(1.03); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="electron-vite.svg" id="logo-image" class="logo" alt="Logo" />
+    <h1 id="night-text">SYSTEM STANDBY</h1>
+  </div>
+
+  <script>
+    window.onload = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const customLogo = urlParams.get('logo');
+      if (customLogo) {
+        document.getElementById('logo-image').src = customLogo;
+      }
+      const bgHex = urlParams.get('bg');
+      if (bgHex) {
+        document.body.style.backgroundColor = '#' + bgHex;
+      }
+    };
+  </script>
+</body>
+</html>

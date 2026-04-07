@@ -82,12 +82,24 @@ app.whenReady().then(() => {
     StorageService.updateDisplayConfig(id, config)
   })
 
+  ipcMain.on('update-global-settings', (_, settings) => {
+    StorageService.updateGlobalSettings(settings)
+  })
+
+  ipcMain.on('update-nightmode-settings', (_, settings) => {
+    StorageService.updateNightModeSettings(settings)
+  })
+
   ipcMain.on('start-kiosk', (_, id) => {
     WindowManagerService.startKioskWindow(id);
   })
 
   ipcMain.on('stop-kiosk', (_, id) => {
     WindowManagerService.stopKioskWindow(id);
+  })
+
+  ipcMain.on('identify-displays', () => {
+    DisplayManagerService.identifyDisplays();
   })
 
   // Set startup item if needed

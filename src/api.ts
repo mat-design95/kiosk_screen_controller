@@ -18,6 +18,14 @@ export const API = {
   updateDisplayConfig: (id: string, config: Partial<DisplayConfig>) => 
     ipcRenderer.send('update-display-config', id, config),
     
+  updateGlobalSettings: (settings: any) => 
+    ipcRenderer.send('update-global-settings', settings),
+    
+  updateNightModeSettings: (settings: any) => 
+    ipcRenderer.send('update-nightmode-settings', settings),
+    
   startKiosk: (id: string) => ipcRenderer.send('start-kiosk', id),
   stopKiosk: (id: string) => ipcRenderer.send('stop-kiosk', id),
+  
+  identifyDisplays: () => ipcRenderer.send('identify-displays'),
 };
