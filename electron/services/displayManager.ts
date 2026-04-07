@@ -1,4 +1,4 @@
-import { app, screen } from 'electron';
+import { app, screen, BrowserWindow } from 'electron';
 import { StorageService } from './storage';
 
 export const DisplayManagerService = {
@@ -37,7 +37,6 @@ export const DisplayManagerService = {
     const displays = this.getSystemDisplays();
     
     displays.forEach((d, i) => {
-      const { BrowserWindow } = require('electron'); // Inline require for BrowserWindow to avoid circular deps if any
       const identifyWin = new BrowserWindow({
         x: d.bounds.x,
         y: d.bounds.y,

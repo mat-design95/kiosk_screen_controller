@@ -1,11 +1,11 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "YourAppID",
+  "appId": "com.matdesign.kioskcontroller",
   "asar": true,
-  "productName": "YourAppName",
+  "productName": "Mat Design Kiosk Controller",
   "directories": {
-    "output": "release/${version}"
+    "output": "release"
   },
   "files": [
     "dist",
@@ -15,7 +15,8 @@
     "target": [
       "dmg"
     ],
-    "artifactName": "${productName}-Mac-${version}-Installer.${ext}"
+    "icon": "public/Mat_design_ikon.png",
+    "artifactName": "${productName}-Mac-Installer.${ext}"
   },
   "win": {
     "target": [
@@ -26,7 +27,8 @@
         ]
       }
     ],
-    "artifactName": "${productName}-Windows-${version}-Setup.${ext}"
+    "icon": "public/Mat_design_ikon.png",
+    "artifactName": "${productName}-Windows-Setup.${ext}"
   },
   "nsis": {
     "oneClick": false,

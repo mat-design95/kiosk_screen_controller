@@ -71,6 +71,14 @@ export const WindowManagerService = {
        }
     });
 
+    // Handle Escape key to forcefully close the display
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    kioskWindow.webContents.on('before-input-event', (_event, input) => {
+      if (input.key === 'Escape') {
+        this.stopKioskWindow(displayId);
+      }
+    });
+
     // Auto-refresh interval
     if (config.refreshIntervalMinutes && config.refreshIntervalMinutes > 0) {
       activeRefreshTimers[displayId] = setInterval(() => {
@@ -136,7 +144,7 @@ export const WindowManagerService = {
     
     if (globalNightModeActive) {
       const store = StorageService.getStore();
-      const logoParam = store.nightModeSettings.logoAssetPath || 'electron-vite.svg';
+      const logoParam = store.nightModeSettings.logoAssetPath || 'Mat_design_logo.png';
       const bgHex = store.nightModeSettings.backgroundMode === 'black' ? '000000' : '1e1e1e';
       
       const devUrl = process.env['VITE_DEV_SERVER_URL'];
