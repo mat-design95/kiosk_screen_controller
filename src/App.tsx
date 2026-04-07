@@ -28,7 +28,7 @@ function App() {
     <>
       <div className="glass-panel" style={{ width: '120px', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '25px 0', borderLeft: 'none', borderTop: 'none', borderBottom: 'none', borderRadius: 0, zIndex: 10 }}>
         
-        <img src="/Mat_design_ikon.png" alt="Mat Design" style={{ width: '100%', height: 'auto', objectFit: 'contain', marginBottom: 40, opacity: 1, filter: 'drop-shadow(0 0 12px rgba(255,255,255,0.3))', transform: 'scale(1.25)' }} />
+        <img src="./Mat_design_ikon.png" alt="Mat Design" style={{ width: '100%', height: 'auto', objectFit: 'contain', marginBottom: 40, opacity: 1, filter: 'drop-shadow(0 0 12px rgba(255,255,255,0.3))', transform: 'scale(1.25)' }} />
 
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <button className={`btn ${activeTab === 'displays' ? 'primary' : ''}`} style={{ width: 44, height: 44, borderRadius: '50%', padding: 0, fontSize: '20px' }} onClick={() => setActiveTab('displays')} title="Displays">
