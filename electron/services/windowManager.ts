@@ -50,7 +50,7 @@ export const WindowManagerService = {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     kioskWindow.webContents.on('did-fail-load', (_evt, errorCode, errorDescription) => {
       if (globalNightModeActive) return; // Do not reload network if we are purposefully looking at a local black frame
-      
+
       console.error(`Watchdog Error on display ${displayId}: [${errorCode}] ${errorDescription}`);
       if (config.reloadOnError) {
         if (!watchdogReconnections[displayId]) {
@@ -65,10 +65,10 @@ export const WindowManagerService = {
     // Watchdog logic (Crash in Web Contents)
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     kioskWindow.webContents.on('render-process-gone', (_evt, details) => {
-       console.error(`Crash on display ${displayId}: ${details.reason}`);
-       if (config.reloadOnError) {
-         kioskWindow.reload();
-       }
+      console.error(`Crash on display ${displayId}: ${details.reason}`);
+      if (config.reloadOnError) {
+        kioskWindow.reload();
+      }
     });
 
     // Handle Escape key to forcefully close the display
@@ -82,7 +82,7 @@ export const WindowManagerService = {
     // Auto-refresh interval
     if (config.refreshIntervalMinutes && config.refreshIntervalMinutes > 0) {
       activeRefreshTimers[displayId] = setInterval(() => {
-        if (!globalNightModeActive) { 
+        if (!globalNightModeActive) {
           kioskWindow.reload();
         }
       }, config.refreshIntervalMinutes * 60 * 1000);
@@ -99,7 +99,7 @@ export const WindowManagerService = {
       this.cleanupTimers(displayId);
       activeWindows[displayId].close();
       delete activeWindows[displayId];
-      
+
       const tempStore = StorageService.getStore();
       if (tempStore.activeDisplays?.includes(displayId)) {
         StorageService.updateActiveDisplays(tempStore.activeDisplays.filter(id => id !== displayId));
@@ -141,23 +141,23 @@ export const WindowManagerService = {
   navigateWindow(displayId: string) {
     const win = activeWindows[displayId];
     if (!win) return;
-    
+
     if (globalNightModeActive) {
       const store = StorageService.getStore();
       const logoParam = store.nightModeSettings.logoAssetPath || 'Mat_design_logo.png';
       const bgHex = store.nightModeSettings.backgroundMode === 'black' ? '000000' : '1e1e1e';
-      
+
       const devUrl = process.env['VITE_DEV_SERVER_URL'];
       if (devUrl) {
-         win.loadURL(`${devUrl}/nightmode.html?logo=${logoParam}&bg=${bgHex}`);
+        win.loadURL(`${devUrl}/nightmode.html?logo=${logoParam}&bg=${bgHex}`);
       } else {
-         const publicPath = process.env.VITE_PUBLIC || path.join(__dirname, '../public');
-         win.loadFile(path.join(publicPath, 'nightmode.html'), { query: { logo: logoParam, bg: bgHex } });
+        const publicPath = process.env.VITE_PUBLIC || path.join(__dirname, '../public');
+        win.loadFile(path.join(publicPath, 'nightmode.html'), { query: { logo: logoParam, bg: bgHex } });
       }
     } else {
       const config = StorageService.getStore().displays[displayId];
       if (config && config.url) {
-        win.loadURL(config.url).catch(() => {});
+        win.loadURL(config.url).catch(() => { });
       }
     }
   }

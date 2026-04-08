@@ -86,6 +86,7 @@ app.whenReady().then(() => {
 
   ipcMain.on('update-nightmode-settings', (_, settings) => {
     StorageService.updateNightModeSettings(settings)
+    SchedulerService.forceCheck()
   })
 
   ipcMain.on('start-kiosk', (_, id) => {

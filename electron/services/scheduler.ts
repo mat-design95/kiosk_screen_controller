@@ -63,5 +63,13 @@ export const SchedulerService = {
       clearInterval(checkInterval);
       checkInterval = null;
     }
+  },
+
+  forceCheck() {
+    checkNightMode();
+    // If it is currently night, re-apply to trigger any potential logo or color updates
+    if (isCurrentlyNight) {
+      WindowManagerService.setNightModeForAll(true);
+    }
   }
 };
